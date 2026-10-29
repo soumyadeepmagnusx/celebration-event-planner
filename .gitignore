@@ -38,3 +38,13 @@ lerna-debug.log*
 *.sw?
 .DS_Store
 Thumbs.db
+
+# Video generation artifacts
+*.mp4
+*.png
+video_frames/
+video_frames_processed/
+video_concat.txt
+chrome_render_profile/
+chrome_temp/
+*.py
