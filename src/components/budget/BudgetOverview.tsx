@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 
 export const BudgetOverview: React.FC = () => {
-  const { activeEvent, addBudgetItem, deleteBudgetItem, toggleItemPaid } = useEvent();
+  const { activeEvent, addBudgetItem, deleteBudgetItem, toggleItemPaid, updateEventDetails } = useEvent();
   const metrics = calculateBudgetMetrics(activeEvent);
 
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
@@ -148,6 +148,24 @@ export const BudgetOverview: React.FC = () => {
               </option>
             ))}
           </select>
+        </div>
+
+        {/* Currency Switcher */}
+        <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200 dark:border-slate-700">
+          <span className="text-[10px] font-extrabold uppercase text-slate-400 px-1.5 hidden sm:inline">Currency:</span>
+          {(['USD', 'INR', 'EUR', 'GBP'] as const).map(curr => (
+            <button
+              key={curr}
+              onClick={() => updateEventDetails({ currency: curr })}
+              className={`px-2.5 py-1 text-xs font-bold rounded-lg transition-all ${
+                activeEvent.currency === curr
+                  ? 'bg-white dark:bg-slate-900 text-brand-600 dark:text-brand-400 shadow-xs'
+                  : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
+              }`}
+            >
+              {curr === 'USD' ? '$ USD' : curr === 'INR' ? '₹ INR' : curr === 'EUR' ? '€ EUR' : '£ GBP'}
+            </button>
+          ))}
         </div>
 
         <div className="flex items-center gap-2">
