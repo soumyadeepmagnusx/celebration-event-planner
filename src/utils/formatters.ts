@@ -1,6 +1,17 @@
 import { CurrencyCode } from '../types/event';
 import { CURRENCIES } from '../constants/categories';
 
+/**
+ * Formats a numeric monetary quantity into an international localized currency string.
+ *
+ * @param {number} amount - The numeric monetary value to format.
+ * @param {CurrencyCode} [currency='USD'] - Target currency symbol/code (USD, INR, EUR, GBP).
+ * @returns {string} Fully localized monetary representation (e.g. "$25,000", "₹50,000").
+ *
+ * @example
+ * formatCurrency(68000, 'USD'); // "$68,000"
+ * formatCurrency(500000, 'INR'); // "₹500,000"
+ */
 export function formatCurrency(amount: number, currency: CurrencyCode = 'USD'): string {
   const config = CURRENCIES[currency] || CURRENCIES.USD;
   try {
@@ -14,6 +25,15 @@ export function formatCurrency(amount: number, currency: CurrencyCode = 'USD'): 
   }
 }
 
+/**
+ * Parses and formats ISO date strings into human-readable medium dates.
+ *
+ * @param {string} dateString - ISO-8601 or standard date format string.
+ * @returns {string} Formatted date (e.g. "Sep 19, 2026") or original string if invalid.
+ *
+ * @example
+ * formatDate("2026-09-19T17:00:00"); // "Sep 19, 2026"
+ */
 export function formatDate(dateString: string): string {
   if (!dateString) return '';
   const date = new Date(dateString);
@@ -25,6 +45,15 @@ export function formatDate(dateString: string): string {
   }).format(date);
 }
 
+/**
+ * Computes calendar day variance between current epoch time and target celebration date.
+ *
+ * @param {string} targetDate - The target event date string.
+ * @returns {{ days: number; isPast: boolean; label: string }} Countdown telemetry.
+ *
+ * @example
+ * calculateDaysRemaining("2026-12-31"); // { days: 63, isPast: false, label: "63 days to go" }
+ */
 export function calculateDaysRemaining(targetDate: string): { days: number; isPast: boolean; label: string } {
   if (!targetDate) return { days: 0, isPast: false, label: 'Date not set' };
   
@@ -44,6 +73,13 @@ export function calculateDaysRemaining(targetDate: string): { days: number; isPa
   }
 }
 
+/**
+ * Safely computes an integer percentage ratio clamped between 0 and 100.
+ *
+ * @param {number} part - Numerator value.
+ * @param {number} total - Denominator value.
+ * @returns {number} Integer between 0 and 100.
+ */
 export function formatPercentage(part: number, total: number): number {
   if (!total || total <= 0) return 0;
   return Math.min(100, Math.round((part / total) * 100));

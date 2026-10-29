@@ -12,6 +12,7 @@ import { CreateEventModal } from './components/event/CreateEventModal';
 import { ApiKeyModal } from './components/common/ApiKeyModal';
 import { ExportImportModal } from './components/common/ExportImportModal';
 import { AICoPlannerDrawer } from './components/chat/AICoPlannerDrawer';
+import { ErrorBoundary } from './components/common/ErrorBoundary';
 
 function AppContent() {
   const [activeTab, setActiveTab] = useState<ActiveTab>('overview');
@@ -109,8 +110,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <EventProvider>
-      <AppContent />
-    </EventProvider>
+    <ErrorBoundary>
+      <EventProvider>
+        <AppContent />
+      </EventProvider>
+    </ErrorBoundary>
   );
 }

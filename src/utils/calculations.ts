@@ -1,15 +1,27 @@
 import { EventData, BudgetCategory } from '../types/event';
 import { BUDGET_CATEGORIES } from '../constants/categories';
 
+/**
+ * Encapsulates computed financial metrics for celebration budgeting.
+ */
 export interface BudgetMetrics {
+  /** Target allocated budget ceiling */
   totalBudget: number;
+  /** Aggregate estimated costs across all line items */
   totalEstimated: number;
+  /** Actual expenditures booked and finalized */
   totalActual: number;
+  /** Liquid cash paid out to date */
   totalPaid: number;
+  /** Remaining buffer before hitting ceiling */
   remainingBudget: number;
-  variance: number; // positive = under budget, negative = over budget
+  /** Positive indicates under-budget; negative indicates deficit */
+  variance: number;
+  /** Percentage of allocated budget utilized (capped at 150) */
   percentBudgetUsed: number;
+  /** Flag denoting whether current spending exceeds target */
   isOverBudget: boolean;
+  /** Detailed proportional spending breakdown by category */
   categoryBreakdown: {
     category: BudgetCategory;
     name: string;
@@ -20,6 +32,16 @@ export interface BudgetMetrics {
   }[];
 }
 
+/**
+ * Calculates real-time financial metrics, spending variances, and category distributions.
+ *
+ * @param {EventData} event - The celebration event object.
+ * @returns {BudgetMetrics} Computed financial status.
+ *
+ * @example
+ * const metrics = calculateBudgetMetrics(activeEvent);
+ * console.log(`Remaining buffer: $${metrics.remainingBudget}`);
+ */
 export function calculateBudgetMetrics(event: EventData): BudgetMetrics {
   const totalBudget = event.totalBudget || 0;
   
@@ -79,6 +101,9 @@ export function calculateBudgetMetrics(event: EventData): BudgetMetrics {
   };
 }
 
+/**
+ * Metric representation for phased milestone execution.
+ */
 export interface MilestoneMetrics {
   total: number;
   completed: number;
@@ -87,6 +112,12 @@ export interface MilestoneMetrics {
   percentage: number;
 }
 
+/**
+ * Analyzes execution velocity and critical path dependencies for milestone checklists.
+ *
+ * @param {EventData} event - The celebration event object.
+ * @returns {MilestoneMetrics} Progress and velocity breakdown.
+ */
 export function calculateMilestoneMetrics(event: EventData): MilestoneMetrics {
   const total = event.milestones.length;
   if (total === 0) {
@@ -107,6 +138,12 @@ export function calculateMilestoneMetrics(event: EventData): MilestoneMetrics {
   };
 }
 
+/** Alias for backward compatibility */
+export const calculateTimelineMetrics = calculateMilestoneMetrics;
+
+/**
+ * Operational vendor tracking metrics across booking pipelines.
+ */
 export interface VendorMetrics {
   total: number;
   booked: number;
@@ -118,6 +155,12 @@ export interface VendorMetrics {
   totalDepositPaid: number;
 }
 
+/**
+ * Aggregates vendor procurement statuses, contractual commitments, and deposit outlays.
+ *
+ * @param {EventData} event - The celebration event object.
+ * @returns {VendorMetrics} Procurement metrics.
+ */
 export function calculateVendorMetrics(event: EventData): VendorMetrics {
   const total = event.vendors.length;
   let booked = 0;
@@ -152,4 +195,38 @@ export function calculateVendorMetrics(event: EventData): VendorMetrics {
     totalCommittedAmount,
     totalDepositPaid,
   };
+}
+
+/**
+ * Computes a weighted aggregate Event Readiness Score (0 to 100) based on:
+ * - 40% Milestone Completion
+ * - 30% Vendor Procurement Confirmation
+ * - 20% Budget Stability & Health
+ * - 10% Creative Suite Content Generation
+ *
+ * @param {EventData} event - The celebration event object.
+ * @returns {number} Score between 0 and 100.
+ */
+export function calculateEventReadiness(event: EventData): number {
+  const milestoneScore = calculateMilestoneMetrics(event).percentage;
+  
+  const vendorMetrics = calculateVendorMetrics(event);
+  const vendorScore = vendorMetrics.total > 0
+    ? Math.round(((vendorMetrics.booked + vendorMetrics.completed) / vendorMetrics.total) * 100)
+    : 50;
+
+  const budgetMetrics = calculateBudgetMetrics(event);
+  const budgetScore = budgetMetrics.isOverBudget ? 40 : 100;
+
+  const creativeItemsCount = (event.invitations?.length || 0) + (event.menus?.length || 0) + (event.entertainment?.length || 0);
+  const creativeScore = Math.min(100, creativeItemsCount * 25);
+
+  const weighted = Math.round(
+    milestoneScore * 0.40 +
+    vendorScore * 0.30 +
+    budgetScore * 0.20 +
+    creativeScore * 0.10
+  );
+
+  return Math.min(100, Math.max(0, weighted));
 }

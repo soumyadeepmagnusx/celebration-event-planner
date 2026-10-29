@@ -1,147 +1,178 @@
 # 🎉 Celebratify AI — Intelligent Celebration & Event Planner
-> **PromptWars [Challenge 5] Celebration & Event Planner Submission**  
-> *A GenAI-powered planning director that helps users organize weddings, birthdays, and community celebrations with automated budgets, execution timelines, vendor checklists, and personalized creative ideas.*
+> **PromptWars [Challenge 5] Celebration & Event Planner Official Submission**  
+> *An autonomous GenAI-powered planning director that helps users organize royal weddings, milestone birthdays, and community celebrations with automated budgets, execution timelines, vendor CRM, and creative studio synthesis.*
+
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18.3-61dafb?style=for-the-badge&logo=react)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
+[![Vitest](https://img.shields.io/badge/Vitest-26%20Passing-green?style=for-the-badge&logo=vitest)](https://vitest.dev/)
+[![Accessibility](https://img.shields.io/badge/WCAG-2.1%20AA%20Compliant-emerald?style=for-the-badge)](https://www.w3.org/WAI/standards-guidelines/wcag/)
+[![License](https://img.shields.io/badge/License-MIT-amber?style=for-the-badge)](LICENSE)
 
 ---
 
-## 🌟 Executive Summary & Problem Alignment
+## 🌐 Live Deployments & Quick Links
 
-Organizing celebrations—whether a 150-guest botanical wedding, a milestone 30th rooftop birthday, or a 350-attendee green community fair—is notoriously stressful. Planners juggle complex budgets, unpredictable vendor quotes, time-sensitive milestones, day-of minute-by-minute schedules, and creative ideation.
-
-**Celebratify AI** solves this with a **GenAI-powered planning engine** built on top of **Google Gemini API** (with a high-intelligence offline heuristic simulation engine), enabling anyone to transition from high-level vision to flawless execution in seconds.
-
----
-
-## 🚀 Key Features
-
-### 1. 💰 Smart Budget Planner & AI Optimizer
-- **Category Allocation**: Venue, Catering, Decor, Photography, Entertainment, Attire, Logistics, Marketing, Permits, and Contingencies.
-- **Dynamic Variance Engine**: Tracks estimated costs, actual signed quotes, paid deposits, and remaining budget buffers in real-time.
-- **AI Budget Optimizer**: Scans allocations against guest count and industry benchmarks to propose actionable cost-saving substitutions (e.g. food stations vs plated dinner) and identifies hidden overrun traps.
-- **Multi-Currency Support**: USD ($), INR (₹), EUR (€), GBP (£), CAD (C$), and AUD (A$).
-
-### 2. ⏱️ Timeline Milestones & Day-Of Run-of-Show
-- **Phased Milestone Checklist**: Organizes milestones across 12 Months, 6 Months, 3 Months, 1 Month, Final Week, and Day-Of.
-- **Minute-by-Minute Run-of-Show Itinerary**: Detailed Day-Of agenda items specifying exact start times, duration in minutes, lead person/vendor, room location, and execution notes.
-- **Progress Tracking**: Real-time progress bars, priority badges (`High`, `Medium`, `Low`), and interactive status toggles.
-
-### 3. 📋 Vendor Checklists & AI Negotiation CRM
-- **Pipeline Tracking**: Tracks vendors across `Researching` ➔ `Contacted` ➔ `Quoted` ➔ `Booked` ➔ `Completed`.
-- **Financial Ledger**: Tracks estimated targets vs. actual vendor quotes vs. deposit milestone payments.
-- **AI Inquiry & Negotiation Email Drafter**: Automatically drafts polite, highly persuasive vendor outreach letters containing event specs, budget targets, custom package requests, and rescheduling/weather contingency clauses.
-
-### 4. 🎨 GenAI Creative Ideation Studio
-- **Themes & Aesthetics Generator**: Curated color palettes with HEX swatches, decor style guidelines, sensory atmosphere notes, and budget-friendly DIY tips.
-- **Multi-Tone Invitation Copywriter**: Generates ready-to-send invitation copy across 6 distinct tones (*Warm & Heartfelt*, *Formal & Black Tie*, *Witty & Playful*, *Cultural*, *Minimalist Modern*) with RSVP and dress code notices.
-- **Curated Menu & Beverage Planner**: Custom welcome cocktails/mocktails, canapés, signature mains, artisan desserts, and dedicated dietary accommodations (vegan, gluten-free, allergen safe).
-- **Music & Entertainment Curator**: Playlist vibes, key moment soundtracks (Procession, Entrance, First Dance, Peak Dance Floor), and crowd icebreaker activities.
-- **AI Speech & Toast Ghostwriter**: Writes custom 2.5-minute speeches tailored to the speaker's role (*Best Man*, *Maid of Honor*, *Parents*, *Birthday Host*, *Civic Leader*) with delivery cue points.
-- **Plan B Contingency Shield**: Proactive contingency protocols for sudden rain, equipment failures, vendor delays, and crowd overages.
-
-### 5. 🤖 Interactive AI Co-Planner Assistant
-- **Context-Aware Conversational Planning**: Slide-over drawer assistant loaded with real-time event parameters (budget status, guest scale, vendor progress).
-- **Instant Inquiries**: Quick suggestion chips for rapid budget trims, vendor interview checklists, and timeline pacing.
-
-### 6. 📄 Data Portability & Executive Dossier
-- **Printable Event Dossier**: High-fidelity printable summary (`window.print()`) formatted for physical binders and PDF generation.
-- **CSV Data Export**: 1-click export of Budget and Vendor records for external bookkeeping.
-- **Full JSON Backup & Restore**: Download or import complete project plans seamlessly.
+- **Production Live App (Vercel)**: [https://celebration-event-planner-spectronz.vercel.app](https://celebration-event-planner-spectronz.vercel.app)
+- **Public GitHub Repository**: [https://github.com/soumyadeepmagnusx/celebration-event-planner](https://github.com/soumyadeepmagnusx/celebration-event-planner)
+- **Video Walkthrough Demo (1080p Full HD)**: [Google Drive Demo Stream](https://drive.google.com/file/d/1a6_16MOVayTil4H9UGiuPWKL9hc5BaZh/view?usp=sharing)
 
 ---
 
-## 🏆 Hackathon Evaluation Parameters
+## 🏛️ System Architecture & Data Flow
 
-| Criteria | Implementation Highlights |
-| :--- | :--- |
-| **Code Quality** | Clean TypeScript 5 architecture, modular component structure, React 18, zero build warnings, strict ESLint standards. |
-| **Security** | Zero exposed secrets. Robust Zod input validation (`createEventSchema`, `budgetItemSchema`, `vendorSchema`). XSS input sanitization and prompt injection protection against instruction overrides. |
-| **Efficiency** | Ultra-lean bundle size (~417 KB JS / ~45 KB CSS), zero runtime bottlenecks, debounced state persistence to `localStorage`, sub-10 MB repo size. |
-| **Testing** | 100% automated test suite passing (23 tests across 4 suites) using Vitest and React Testing Library covering calculations, validation, AI fallbacks, and accessibility. |
-| **Accessibility** | WCAG 2.1 AA compliant: keyboard navigation, skip-to-content link, semantic HTML5 landmarks (`<main>`, `<header>`, `<nav>`), ARIA progress bars (`role="progressbar"`), accessible modal dialogs with focus traps and ESC listeners. |
-| **Problem Alignment** | Complete, turnkey solution directly addressing Weddings, Birthdays, Community Events, Anniversaries, and Corporate Galas. |
+```mermaid
+flowchart TD
+    subgraph UI ["User Interface Layer (Tailwind CSS & Lucide)"]
+        Nav[Navbar & Dark Mode Controller]
+        Header[Event Header & Preset Theme Switcher]
+        Tabs[Navigation Tabs: Dashboard | Budget | Timelines | Vendors | Studio | Dossier]
+        EB[React Enterprise Error Boundary]
+    end
+
+    subgraph StateManagement ["State & Context Layer"]
+        EC[EventProvider Context]
+        Hooks[Custom Hooks: useEventMetrics | useDebounce | useLocalStorage]
+        Storage[LocalStorage Persistence & Schema Migrations]
+    end
+
+    subgraph AIAndServices ["GenAI Intelligence Layer"]
+        Gemini[Google Gemini API / Heuristic Fallback Engine]
+        BudgetAI[AI Budget Variance & Reallocation Engine]
+        VendorAI[AI Inquiry & Negotiation Drafter]
+        StudioAI[AI 6-Tone Copywriter & Artisan Menu Synthesizer]
+    end
+
+    subgraph SecurityAndValidation ["Security & Quality Layer"]
+        Zod[Runtime Zod Schema Validation]
+        Sanitizer[XSS & Prompt Injection Defensive Filters]
+        A11y[WCAG 2.1 AA Focus & Screen Reader Landmarks]
+    end
+
+    EB --> UI
+    UI <--> StateManagement
+    StateManagement <--> AIAndServices
+    UI <--> SecurityAndValidation
+```
 
 ---
 
-## 🛠️ Tech Stack
+## 💎 Core Architecture & Enterprise Features
 
-- **Framework**: React 18 + Vite 5 + TypeScript 5
-- **Styling**: Tailwind CSS 3 (with dark mode and responsive layout)
-- **Icons**: Lucide React
-- **Validation**: Zod
-- **Testing**: Vitest, React Testing Library, JSDOM, `@testing-library/jest-dom`
-- **GenAI**: Google Gemini API (`gemini-2.5-flash` / `gemini-1.5-flash`) + Built-in Generative Heuristic Engine
+### 1. 🏛️ Multi-Event Architecture & Theme Engine
+- **Three Production Presets**:
+  1. *Julian & Elena’s Conservatory Soirée* (Royal Wedding, Rose & Champagne palette, Playfair Display typography)
+  2. *NOVA // 30: Midnight Penthouse Odyssey* (Milestone 30th Birthday, Cyber Velvet & Electric Magenta palette, dark neon aesthetic)
+  3. *Solstice Earth & Artisan Commons* (Green Community Festival, Botanical Emerald & Terracotta palette, community styling)
+- **Dynamic CSS Variable Theming**: Single-click dynamic palette injection changing accent gradients, card badges, borders, and typography.
+
+### 2. 💰 Smart Budget Planner & AI Optimizer
+- **Variance Calculations**: Real-time category-by-category estimated vs. actual expenses, paid liquid deposits, and buffer telemetry.
+- **Instant Multi-Currency Switching**: Seamless conversion across USD (`$`), INR (`₹`), EUR (`€`), and GBP (`£`).
+- **AI Budget Reallocation**: Scans category overages and computes smart fund reallocations (e.g. trimming print stationery to offset floral installation spikes).
+
+### 3. ⏱️ Phased Milestones & Day-Of Run-of-Show
+- **High-Level Milestone Roadmap**: Checkpoints from 12 Months, 6 Months, 3 Months, 1 Month, and Event Week.
+- **Minute-by-Minute Day-Of Run-of-Show**: Time-stamped execution schedule with designated team leads, room/zones, and live checkoffs.
+
+### 4. 🤝 Vendor Checklists & Contract Negotiation CRM
+- **Pipeline Kanban**: Lifecycle tracking from `Researching` ➔ `Contacted` ➔ `Quoted` ➔ `Booked` ➔ `Completed`.
+- **AI Contract Negotiation**: Generates tailored inquiry letters with mandatory legal reschedule and weather contingency clauses.
+
+### 5. 🎨 GenAI Creative Ideation Studio
+- **6-Tone Invitation Copywriter**: Authors invitations in *Royal & Formal*, *Warm & Heartfelt*, *Witty & Playful*, *Poetic*, and *Modern Minimalist* tones.
+- **Artisan Menus & Dietary Safety**: Curates welcome drinks, canapés, and signature mains with dedicated Vegan, Gluten-Free, and Allergen badges.
+- **Curated Music Playlists**: Spotify-style mood playlists with track suggestions and key-moment entrance soundtracks.
+- **AI Speech & Toast Ghostwriter**: 2.5-minute custom speeches tailored to the speaker's role with delivery cues.
+- **Plan B Contingency Shield**: Proactive protocols for severe weather, vendor delays, and crowd overages.
 
 ---
 
-## 🧪 Automated Test Suite
+## 🧪 Comprehensive Automated Testing (26 / 26 Passing)
 
-Run the full suite of automated unit and integration tests:
+Celebratify AI features an automated test suite using **Vitest** and **React Testing Library**:
+
+| Test Suite File | Tests | Focus Area |
+| :--- | :---: | :--- |
+| `src/test/calculations.test.ts` | 4 | Budget variance, category distribution, milestone velocity, vendor commitments |
+| `src/test/validation.test.ts` | 6 | Zod schema parsing, XSS tag stripping, and LLM prompt injection defenses |
+| `src/test/geminiService.test.ts` | 9 | Plan synthesis, vendor letter generation, menu generation, speech ghostwriting |
+| `src/test/Accessibility.test.tsx` | 4 | WCAG 2.1 AA keyboard navigation, skip-to-content links, ARIA roles, dialog modal traps |
+| `src/test/ErrorBoundary.test.tsx` | 2 | Enterprise error boundary fallback, role="alert", error diagnostics, reload recovery |
+| `src/test/hooks.test.ts` | 1 | Memoized metrics aggregation and performance optimization |
 
 ```bash
-# Run tests
-npm test
-
-# Run tests with coverage
-npm run test:coverage
-```
-
-### Test Suite Results:
-```text
- ✓ src/test/calculations.test.ts (4 tests)
- ✓ src/test/validation.test.ts (6 tests)
- ✓ src/test/geminiService.test.ts (9 tests)
- ✓ src/test/Accessibility.test.tsx (4 tests)
-
-Test Files  4 passed (4)
-Tests       23 passed (23)
+# Run test suite
+npm test -- --run
 ```
 
 ---
 
-## 📦 Local Setup & Development
+## 🛡️ Security & Defensive Engineering
+
+1. **Zero Secret Leakage**: API keys are client-side only (BYOK) or leverage the zero-dependency offline heuristic simulation engine.
+2. **Strict Zod Runtime Validation**: Every form input is strictly validated through Zod schemas before entering the state graph.
+3. **Dual-Layer Sanitization**:
+   - `sanitizeInput()`: Strips HTML angle brackets to prevent Stored XSS.
+   - `sanitizePromptText()`: Neutralizes adversarial LLM prompt injections (e.g. `ignore previous instructions`, `system:` overrides).
+4. **React Error Boundary**: Enterprise-grade error boundaries catch rendering exceptions with graceful fallback recovery.
+
+---
+
+## 📂 Modular Clean Code Directory Structure
+
+```
+celebration-event-planner/
+├── .editorconfig               # Cross-editor formatting specifications
+├── .eslintrc.json              # Strict TypeScript & React Hooks ESLint configuration
+├── .prettierrc                 # Code formatting standards
+├── index.html                  # HTML5 entry with WCAG language and viewport tags
+├── package.json                # Lean dependencies (Vite, React, Lucide, Zod, Vitest)
+├── tsconfig.json               # Strict TypeScript configuration
+├── vite.config.ts              # Bundler optimization and Vitest configuration
+└── src/
+    ├── components/             # Single-responsibility presentation components
+    │   ├── budget/             # Smart Budget & Multi-Currency Switcher
+    │   ├── chat/               # AI Co-Planner slide-over drawer
+    │   ├── common/             # ErrorBoundary, Modal, Navbar, ProgressBar
+    │   ├── dashboard/          # Executive KPI Overview & Readiness Score
+    │   ├── event/              # EventHeader & Preset Switcher
+    │   ├── ideas/              # GenAI Creative Studio
+    │   ├── print/              # Printable Master Dossier (Binder Format)
+    │   ├── timeline/           # Milestones & Minute-by-Minute Run-of-Show
+    │   └── vendors/            # Vendor Pipeline CRM & Negotiation Letter Generator
+    ├── constants/              # Category definitions, currency configs, luxury presets
+    ├── context/                # EventContext global state engine
+    ├── hooks/                  # useEventMetrics, useDebounce, useLocalStorage
+    ├── services/               # Gemini AI API, Storage, Export/Import services
+    ├── test/                   # Vitest unit & integration test suites
+    ├── types/                  # Strict TypeScript interfaces and schemas
+    └── utils/                  # Pure calculation, formatting, and validation utilities
+```
+
+---
+
+## 🚀 Local Development Setup
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/<your-username>/celebration-event-planner.git
+git clone https://github.com/soumyadeepmagnusx/celebration-event-planner.git
 cd celebration-event-planner
 
 # 2. Install dependencies
 npm install
 
-# 3. (Optional) Configure Gemini API Key
-cp .env.example .env
-# Add VITE_GEMINI_API_KEY=your_key_here
-
-# 4. Start development server
+# 3. Start development server
 npm run dev
 
-# 5. Build production bundle
+# 4. Run automated test suite
+npm test -- --run
+
+# 5. Build optimized production bundle
 npm run build
 ```
 
 ---
 
-## 🌐 1-Click Deployment Guide
-
-This application builds into a static SPA and can be deployed instantly for free on:
-
-### Vercel:
-1. Push repository to GitHub.
-2. Go to [Vercel](https://vercel.com) and import the repository.
-3. Framework Preset: `Vite` (Build command: `npm run build`, Output directory: `dist`).
-4. Click **Deploy**.
-
-### Netlify:
-1. Connect repository on [Netlify](https://netlify.com).
-2. Set Build command: `npm run build` and Publish directory: `dist`.
-3. Click **Deploy Site**.
-
----
-
-## 🔒 Security & Privacy Notice
-Celebratify AI does not transmit sensitive event data or user credentials to external databases. All project plans and optional API keys are isolated within the client's browser local storage sandbox.
-
----
-
 ## 📄 License
-MIT License. Created for the PromptWars Hackathon 2026.
+This project is open-source under the **MIT License**.
