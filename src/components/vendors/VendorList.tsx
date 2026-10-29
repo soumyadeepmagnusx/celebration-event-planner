@@ -201,9 +201,31 @@ export const VendorList: React.FC = () => {
             return (
               <div
                 key={vendor.id}
-                className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-4"
+                className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-4 overflow-hidden"
               >
                 <div>
+                  {/* Luxury Vendor Cover Image */}
+                  {vendor.image && (
+                    <div className="relative h-40 -mx-5 -mt-5 mb-3 overflow-hidden rounded-t-2xl">
+                      <img 
+                        src={vendor.image} 
+                        alt={vendor.name} 
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" 
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20" />
+                      {vendor.role && (
+                        <span className="absolute bottom-2 left-3 px-2.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-black/70 text-white backdrop-blur-md border border-white/20">
+                          {vendor.role}
+                        </span>
+                      )}
+                      {vendor.rating && (
+                        <span className="absolute top-2 right-3 px-2 py-0.5 rounded-md text-[11px] font-extrabold bg-amber-500/90 text-white backdrop-blur-md flex items-center gap-1 shadow-sm">
+                          ★ {vendor.rating.toFixed(1)}
+                        </span>
+                      )}
+                    </div>
+                  )}
+
                   {/* Category and Status Pill */}
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">

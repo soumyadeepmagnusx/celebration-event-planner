@@ -36,6 +36,7 @@ export interface BudgetItem {
   paid: boolean;
   notes?: string;
   dueDate?: string;
+  color?: string;
 }
 
 export type TimelinePhase = 
@@ -99,6 +100,8 @@ export interface Vendor {
   name: string;
   category: VendorCategory;
   status: VendorStatus;
+  role?: string;
+  image?: string;
   contactPerson?: string;
   email?: string;
   phone?: string;
@@ -114,6 +117,9 @@ export interface ThemeIdea {
   id: string;
   title: string;
   description: string;
+  category?: string;
+  vibe?: string;
+  impact?: string;
   colorPalette: { name: string; hex: string }[];
   decorStyle: string;
   sensoryDetails: string;
@@ -166,6 +172,16 @@ export interface EventData {
   id: string;
   title: string;
   type: EventType;
+  subtitle?: string;
+  themeName?: string;
+  heroImage?: string;
+  fontClass?: string;
+  accentPrimary?: string;
+  accentSecondary?: string;
+  gradientText?: string;
+  gradientBg?: string;
+  badgeBg?: string;
+  palette?: { name: string; hex: string }[];
   date: string;
   location: string;
   guestCount: number;

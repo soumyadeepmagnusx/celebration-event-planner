@@ -1,7 +1,7 @@
 import { EventData } from '../types/event';
 import { DEFAULT_EVENTS } from '../constants/defaultEvents';
 
-const STORAGE_KEY = 'celebratify_events_data_v1';
+const STORAGE_KEY = 'celebratify_events_luxury_v2';
 const ACTIVE_EVENT_KEY = 'celebratify_active_event_id';
 const API_KEY_STORAGE = 'celebratify_gemini_api_key';
 

@@ -237,9 +237,16 @@ export const CreativeIdeationHub: React.FC = () => {
                 className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-4 hover:shadow-md transition-shadow"
               >
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">
-                    {theme.decorStyle}
-                  </span>
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">
+                      {theme.category || theme.decorStyle} {theme.vibe && `• ${theme.vibe}`}
+                    </span>
+                    {theme.impact && (
+                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+                        ★ {theme.impact}
+                      </span>
+                    )}
+                  </div>
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-0.5">
                     {theme.title}
                   </h3>

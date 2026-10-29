@@ -218,7 +218,7 @@ export const BudgetOverview: React.FC = () => {
                       </td>
                       <td className="py-3 px-4">
                         <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
-                          <span className="w-2 h-2 rounded-full" style={{ backgroundColor: catConfig?.color || '#cbd5e1' }} />
+                          <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: item.color || catConfig?.color || '#cbd5e1' }} />
                           {catConfig?.name || item.category}
                         </span>
                       </td>
